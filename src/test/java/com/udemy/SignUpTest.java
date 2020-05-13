@@ -2,109 +2,87 @@ package com.udemy;
 
 import Config.UserConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
-
-public class SignUpTest {
+public class SignUpTest extends TestBase {
 
     @Test(description = "Sign Up with valid credential")
     public void signUpWithValidCredentials() {
-        File chromeDriver = new File("src/main/resources/chromedriver.exe");
-        ChromeDriverService chromeService = new ChromeDriverService.Builder()
-                .usingDriverExecutable(chromeDriver)
-                .usingAnyFreePort()
-                .build();
 
-        WebDriver driver = new ChromeDriver(chromeService);
+        By signUpPopUpButtonLocator = By.xpath("//button[@data-purpose='header-signup']");
+        By signUpPopUpHeaderLocator = By.xpath("//div[@class=' loginbox-v4__header loginbox-v4__header--signup']");
+        By fullNameFieldLocator = By.id("id_fullname");
+        By emailFieldLocator = By.id("email--1");
+        By passwordFieldLocator = By.id("password");
+        By signUpButtonLocator = By.id("submit-id-submit");
+        By profileButtonLocator = By.id("header.profile");
+        By usernameFieldOnProfileLocator = By.xpath("//hgroup[@class='tooltip-container']/h2");
+        By closeAccountLinkInProfileLocator = By.xpath("(//div[@class='side-nav db-sm']/ul/li)[last()]/a");
+        By closeAccountPopupButtonLocator = By.xpath("//button[@data-purpose='delete-account-popup-opener']");
+        By passwordFieldForClosingAccountLocator = By.id("id_password");
+        By closeAccountButtonAfterEnteringPWLocator = By.id("submit-id-submit");
+
 
         driver.get("https://www.udemy.com/");
-        pause(2000);
 
-        WebElement signUpPopupButton = driver.findElement(
-                By.xpath("//button[@data-purpose='header-signup']"));
+
+//        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated()));
+
+        wait.until(ExpectedConditions.elementToBeClickable(signUpPopUpButtonLocator));
+        WebElement signUpPopupButton = driver.findElement(signUpPopUpButtonLocator);
         signUpPopupButton.click();
-        pause(1000);
 
-        WebElement signUpPopupHeader = driver.findElement(
-                By.xpath("//div[@class=' loginbox-v4__header loginbox-v4__header--signup']"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(signUpPopUpHeaderLocator));
+        WebElement signUpPopupHeader = driver.findElement(signUpPopUpHeaderLocator);
         Assert.assertEquals(signUpPopupHeader.getText(), "Зарегистрируйтесь и начните обучение!");
-        pause(1000);
 
-        WebElement fullNameField = driver.findElement(
-                By.xpath("//input[@id='id_fullname']"));
+        wait.until(ExpectedConditions.elementToBeClickable(signUpButtonLocator));
+        WebElement fullNameField = driver.findElement(fullNameFieldLocator);
         fullNameField.clear();
-        fullNameField.sendKeys(UserConfig.userName);
-        pause(1000);
+        fullNameField.sendKeys(UserConfig.userNameForSignUp);
 
-        WebElement emailField = driver.findElement(
-                By.xpath("//input[@id='email--1']"));
+        WebElement emailField = driver.findElement(emailFieldLocator);
         emailField.clear();
-        emailField.sendKeys(UserConfig.userEmail);
-        pause(1000);
+        emailField.sendKeys(UserConfig.userEmailForSignUp);
 
-        WebElement passwordField = driver.findElement(
-                By.xpath("//input[@id='password']"));
+        WebElement passwordField = driver.findElement(passwordFieldLocator);
         passwordField.clear();
-        passwordField.sendKeys(UserConfig.userPassword);
-        pause(3000);
+        passwordField.sendKeys(UserConfig.userPasswordForSignUp);
 
-        WebElement signUpButton = driver.findElement(
-                By.xpath("//input[@id='submit-id-submit']"));
+        WebElement signUpButton = driver.findElement(signUpButtonLocator);
         signUpButton.click();
-        pause(7000);
 
-        WebElement profileButton = driver.findElement(
-                By.xpath("//a[@id='header.profile']"));
+        wait.until(ExpectedConditions.elementToBeClickable(profileButtonLocator));
+        WebElement profileButton = driver.findElement(profileButtonLocator);
         profileButton.click();
-        pause(3000);
 
-        WebElement usernameFieldOnProfile = driver.findElement(
-                By.xpath("//hgroup[@class='tooltip-container']/h2"));
-        pause(3000);
-        Assert.assertEquals(usernameFieldOnProfile.getText(), UserConfig.userName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameFieldOnProfileLocator));
+        WebElement usernameFieldOnProfile = driver.findElement(usernameFieldOnProfileLocator);
+        Assert.assertEquals(usernameFieldOnProfile.getText(), UserConfig.userNameForSignUp);
 
-        WebElement closeAccountLinkInProfile = driver.findElement(
-                By.xpath("(//div[@class='side-nav db-sm']/ul/li)[last()]/a"));
+        wait.until(ExpectedConditions.elementToBeClickable(closeAccountLinkInProfileLocator));
+        WebElement closeAccountLinkInProfile = driver.findElement(closeAccountLinkInProfileLocator);
         closeAccountLinkInProfile.click();
-        pause(1000);
 
-        WebElement closeAccountPopupButton = driver.findElement(
-                By.xpath("//button[@data-purpose='delete-account-popup-opener']"));
+        wait.until(ExpectedConditions.elementToBeClickable(closeAccountPopupButtonLocator));
+        WebElement closeAccountPopupButton = driver.findElement(closeAccountPopupButtonLocator);
         closeAccountPopupButton.click();
-        pause(1000);
 
-        WebElement passwordFieldForClosingAccount = driver.findElement(
-                By.xpath("//input[@id='id_password']"));
+        wait.until(ExpectedConditions.elementToBeClickable(closeAccountButtonAfterEnteringPWLocator));
+        WebElement passwordFieldForClosingAccount = driver.findElement(passwordFieldForClosingAccountLocator);
         passwordFieldForClosingAccount.clear();
-        passwordFieldForClosingAccount.sendKeys(UserConfig.userPassword);
-        pause(2000);
+        passwordFieldForClosingAccount.sendKeys(UserConfig.userPasswordForSignUp);
 
 
-        WebElement closeAccountButtonAfterEnteringPW = driver.findElement(
-                By.xpath("//input[@id='submit-id-submit']"));
+        WebElement closeAccountButtonAfterEnteringPW = driver.findElement(closeAccountButtonAfterEnteringPWLocator);
         closeAccountButtonAfterEnteringPW.click();
-        pause(2000);
 
-        signUpPopupButton = driver.findElement(
-                By.xpath("//button[@data-purpose='header-signup']"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(signUpPopUpButtonLocator));
+        signUpPopupButton = driver.findElement(signUpPopUpButtonLocator);
         Assert.assertEquals(signUpPopupButton.getText(), "Зарегистрироваться");
-        pause(2000);
 
-        driver.quit();
-
-    }
-
-    private void pause (int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
