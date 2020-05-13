@@ -29,15 +29,13 @@ public class SignUpTest extends TestBase {
         driver.get("https://www.udemy.com/");
 
 
-//        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated()));
-
         wait.until(ExpectedConditions.elementToBeClickable(signUpPopUpButtonLocator));
         WebElement signUpPopupButton = driver.findElement(signUpPopUpButtonLocator);
         signUpPopupButton.click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(signUpPopUpHeaderLocator));
         WebElement signUpPopupHeader = driver.findElement(signUpPopUpHeaderLocator);
-        Assert.assertEquals(signUpPopupHeader.getText(), "Зарегистрируйтесь и начните обучение!");
+        Assert.assertEquals(signUpPopupHeader.getText(), "Sign Up and Start Learning!");
 
         wait.until(ExpectedConditions.elementToBeClickable(signUpButtonLocator));
         WebElement fullNameField = driver.findElement(fullNameFieldLocator);
@@ -82,7 +80,7 @@ public class SignUpTest extends TestBase {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(signUpPopUpButtonLocator));
         signUpPopupButton = driver.findElement(signUpPopUpButtonLocator);
-        Assert.assertEquals(signUpPopupButton.getText(), "Зарегистрироваться");
+        Assert.assertEquals(signUpPopupButton.getText(), "Sign Up");
 
     }
 }

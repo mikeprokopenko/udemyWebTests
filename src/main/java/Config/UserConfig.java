@@ -8,7 +8,7 @@ public class UserConfig {
 
     public static String userNameForSignUp = "mikeUser" + System.currentTimeMillis();
     public static String userEmailForSignUp = System.currentTimeMillis() + "email@yopmail.com";
-    public static String userPasswordForSignUp = "TestPassword1234!";
+    public static String userPasswordForSignUp = "TestPassword!" + System.currentTimeMillis();
 
     public static String userNameForLogin = "MikeUser";
     public static String userEmailForLogin = "mikeemail@yopmail.com";

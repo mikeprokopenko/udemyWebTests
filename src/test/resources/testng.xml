@@ -14,7 +14,7 @@
         <classes>
             <class name="com.udemy.LoginTest">
                 <methods>
-                    <include name="loginWithValidCredentials"/>
+                    <include name="loginBySettingCookies"/>
                 </methods>
             </class>
         </classes>

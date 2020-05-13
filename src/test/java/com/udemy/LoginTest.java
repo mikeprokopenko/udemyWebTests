@@ -9,40 +9,24 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
 
-    @Test (description = "Login with valid credentials")
-    public void loginWithValidCredentials() {
+    @Test (description = "Login by setting cookies")
+    public void loginBySettingCookies() {
 
-        By loginPopupButtonLocator = By.xpath("//button[@data-purpose='header-login']");
-        By loginPopupHeaderLocator = By.xpath("//div[@class='loginbox-v4__header']");
-        By emailForLoginFieldLocator = By.id("email--1");
-        By passwordForLoginFieldLocator = By.id("id_password");
-        By loginButtonInPopupLocator = By.id("submit-id-submit");
+        By loginHeaderButtonLocator = By.xpath("//button[@data-purpose='header-login']");
         By profileButtonLocator = By.id("header.profile");
         By usernameFieldInProfileLocator = By.xpath("//hgroup[@class='tooltip-container']/h2");
-        By logoutButtonInProfileLocator = By.xpath("//a[@data-purpose='do-logout']");
+        By accountProfileLinkLocator = By.xpath("//a[@data-purpose='user_manage:edit-account']");
+        By emailFieldInProfileLocator = By.xpath("//div[@class='form-control ']/b");
 
         driver.get("https://www.udemy.com/");
 
-        wait.until(ExpectedConditions.elementToBeClickable(loginPopupButtonLocator));
-        WebElement loginPopupButton = driver.findElement(loginPopupButtonLocator);
-        loginPopupButton.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(loginHeaderButtonLocator));
+        WebElement loginHeaderButton = driver.findElement(loginHeaderButtonLocator);
+        Assert.assertEquals(loginHeaderButton.getText(), "Log In");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(loginPopupHeaderLocator));
-        WebElement loginPopupHeader = driver.findElement(loginPopupHeaderLocator);
-        Assert.assertEquals(loginPopupHeader.getText(), "Войдите в учетную запись Udemy!");
+        driver.manage().addCookie(cookie);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(loginButtonInPopupLocator));
-        WebElement emailForLoginField = driver.findElement(emailForLoginFieldLocator);
-        emailForLoginField.clear();
-        emailForLoginField.sendKeys(UserConfig.userEmailForLogin);
-
-        WebElement passwordForLoginField = driver.findElement(passwordForLoginFieldLocator);
-        passwordForLoginField.clear();
-        passwordForLoginField.sendKeys(UserConfig.userPasswordForLogin);
-
-        wait.until(ExpectedConditions.elementToBeClickable(loginPopupButtonLocator));
-        WebElement loginButtonInPopup = driver.findElement(loginButtonInPopupLocator);
-        loginButtonInPopup.click();
+        driver.navigate().refresh();
 
         wait.until(ExpectedConditions.elementToBeClickable(profileButtonLocator));
         WebElement profileButton = driver.findElement(profileButtonLocator);
@@ -52,13 +36,13 @@ public class LoginTest extends TestBase {
         WebElement usernameFieldInProfile = driver.findElement(usernameFieldInProfileLocator);
         Assert.assertEquals(usernameFieldInProfile.getText(), UserConfig.userNameForLogin);
 
-        WebElement logoutButtonInProfile = driver.findElement(logoutButtonInProfileLocator);
-        logoutButtonInProfile.click();
+        wait.until(ExpectedConditions.elementToBeClickable(accountProfileLinkLocator));
+        WebElement accountProfileLink = driver.findElement(accountProfileLinkLocator);
+        accountProfileLink.click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(loginPopupButtonLocator));
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.udemy.com/logout/");
-        loginPopupButton = driver.findElement(loginPopupButtonLocator);
-        Assert.assertEquals(loginPopupButton.getText(), "Log In");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldInProfileLocator));
+        WebElement emailFieldInProfile = driver.findElement(emailFieldInProfileLocator);
+        Assert.assertEquals(emailFieldInProfile.getText(), UserConfig.userEmailForLogin);
     }
 
 }

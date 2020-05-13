@@ -1,5 +1,6 @@
 package com.udemy;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -20,6 +21,11 @@ public class TestBase {
             .usingAnyFreePort()
             .build();
 
+        Cookie cookie = new Cookie.Builder("dj_session_id", "wxb3l0upnarwlorj4iqyk4c6nvg2mk8u")
+                .domain("www.udemy.com")
+                .path("/")
+                .build();
+
 
     WebDriver driver;
     WebDriverWait wait;
@@ -30,13 +36,14 @@ public class TestBase {
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("useAutomationExtension", false);
+        options.addArguments("--lang=en");
 
         driver = new ChromeDriver(chromeService, options);
 
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 15);
     }
 
     @AfterTest (description = "Closing the browser")
