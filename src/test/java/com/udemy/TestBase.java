@@ -9,6 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.io.File;
+import java.util.Collections;
 
 public class TestBase {
 
@@ -27,8 +28,10 @@ public class TestBase {
     public void beforeMethod() {
 
         ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
 
-        driver = new ChromeDriver(chromeService);
+        driver = new ChromeDriver(chromeService, options);
 
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
@@ -39,7 +42,6 @@ public class TestBase {
     @AfterTest (description = "Closing the browser")
     public void afterMethod() {
 
-        driver.manage().deleteAllCookies();
         driver.quit();
     }
 
