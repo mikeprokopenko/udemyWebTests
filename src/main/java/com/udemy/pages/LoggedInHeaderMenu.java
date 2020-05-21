@@ -18,23 +18,15 @@ public class LoggedInHeaderMenu {
         this.wait = wait;
     }
 
-    By userProfileDropdownLocator = By.xpath("//div[@data-purpose='user-avatar']");
-    By profileLinkInDropdownLocator = By.xpath("//a[@data-purpose='edit-profile']");
+    By userProfileDropdownLocator = By.xpath("//div[@class='dropdown--open-on-hover dropdown--user dropdown--open-on-hover dropdown']");
 
     public void openProfilePage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(userProfileDropdownLocator));
         WebElement userProfileDropdown = driver.findElement(userProfileDropdownLocator);
         Actions builder = new Actions(driver);
-        Action moveMouseOnUserDropdown = builder
-                .moveToElement(userProfileDropdown)
+        Action clickProfileIcon = builder
+                .click(userProfileDropdown)
                 .build();
-        moveMouseOnUserDropdown.perform();
-        wait.until(ExpectedConditions.elementToBeClickable(profileLinkInDropdownLocator));
-        WebElement profileLinkInDropdown = driver.findElement(profileLinkInDropdownLocator);
-        Action moveAndClickProfileLink = builder
-                .moveToElement(profileLinkInDropdown)
-                .click(profileLinkInDropdown)
-                .build();
-        moveAndClickProfileLink.perform();
+        clickProfileIcon.perform();
     }
 }

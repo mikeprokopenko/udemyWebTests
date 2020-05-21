@@ -42,9 +42,10 @@ public class TestBase {
     public void beforeMethod() {
 
         ChromeOptions options = new ChromeOptions();
-/*        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", false);*/
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
         options.addArguments("--lang=en");
+        options.addArguments("incognito");
 
         driver = new ChromeDriver(chromeService, options);
         driver.manage().window().maximize();
