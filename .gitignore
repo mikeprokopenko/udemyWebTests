@@ -2,3 +2,5 @@
 .allure
 target/
 com.udemy.iml
+Utils.java
+Config/

@@ -1,6 +1,5 @@
 package com.udemy;
 
-import Config.UserConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,7 +17,7 @@ public class SignUpTest extends TestBase {
         By emailFieldLocator = By.id("email--1");
         By passwordFieldLocator = By.id("password");
         By signUpButtonLocator = By.id("submit-id-submit");
-        By profileButtonLocator = By.id("header.profile");
+        By profileButtonLocator = By.xpath("//a[@id ='header.profile']");
         By usernameFieldOnProfileLocator = By.xpath("//hgroup[@class='tooltip-container']/h2");
         By closeAccountLinkInProfileLocator = By.xpath("(//div[@class='side-nav db-sm']/ul/li)[last()]/a");
         By closeAccountPopupButtonLocator = By.xpath("//button[@data-purpose='delete-account-popup-opener']");
@@ -40,15 +39,15 @@ public class SignUpTest extends TestBase {
         wait.until(ExpectedConditions.elementToBeClickable(signUpButtonLocator));
         WebElement fullNameField = driver.findElement(fullNameFieldLocator);
         fullNameField.clear();
-        fullNameField.sendKeys(UserConfig.userNameForSignUp);
+        fullNameField.sendKeys(utils.getUSER_NAME_FOR_SIGN_UP());
 
         WebElement emailField = driver.findElement(emailFieldLocator);
         emailField.clear();
-        emailField.sendKeys(UserConfig.userEmailForSignUp);
+        emailField.sendKeys(utils.getUSER_EMAIL_FOR_SIGN_UP());
 
         WebElement passwordField = driver.findElement(passwordFieldLocator);
         passwordField.clear();
-        passwordField.sendKeys(UserConfig.userPasswordForSignUp);
+        passwordField.sendKeys(utils.getUSER_PW_FOR_SIGN_UP());
 
         WebElement signUpButton = driver.findElement(signUpButtonLocator);
         signUpButton.click();
@@ -59,7 +58,7 @@ public class SignUpTest extends TestBase {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(usernameFieldOnProfileLocator));
         WebElement usernameFieldOnProfile = driver.findElement(usernameFieldOnProfileLocator);
-        Assert.assertEquals(usernameFieldOnProfile.getText(), UserConfig.userNameForSignUp);
+        Assert.assertEquals(usernameFieldOnProfile.getText(), utils.getUSER_NAME_FOR_SIGN_UP());
 
         wait.until(ExpectedConditions.elementToBeClickable(closeAccountLinkInProfileLocator));
         WebElement closeAccountLinkInProfile = driver.findElement(closeAccountLinkInProfileLocator);
@@ -72,7 +71,7 @@ public class SignUpTest extends TestBase {
         wait.until(ExpectedConditions.elementToBeClickable(closeAccountButtonAfterEnteringPWLocator));
         WebElement passwordFieldForClosingAccount = driver.findElement(passwordFieldForClosingAccountLocator);
         passwordFieldForClosingAccount.clear();
-        passwordFieldForClosingAccount.sendKeys(UserConfig.userPasswordForSignUp);
+        passwordFieldForClosingAccount.sendKeys(utils.getUSER_PW_FOR_SIGN_UP());
 
 
         WebElement closeAccountButtonAfterEnteringPW = driver.findElement(closeAccountButtonAfterEnteringPWLocator);

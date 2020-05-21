@@ -1,5 +1,6 @@
 package com.udemy;
 
+import Config.Utils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,6 +27,7 @@ public class TestBase {
                 .path("/")
                 .build();
 
+        Utils utils = new Utils();
 
     WebDriver driver;
     WebDriverWait wait;
@@ -40,7 +42,6 @@ public class TestBase {
 
         driver = new ChromeDriver(chromeService, options);
 
-        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 15);

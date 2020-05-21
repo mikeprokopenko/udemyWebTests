@@ -1,6 +1,5 @@
 package com.udemy;
 
-import Config.UserConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,7 +12,7 @@ public class LoginTest extends TestBase {
     public void loginBySettingCookies() {
 
         By loginHeaderButtonLocator = By.xpath("//button[@data-purpose='header-login']");
-        By profileButtonLocator = By.id("header.profile");
+        By profileButtonLocator = By.xpath("//a[@id ='header.profile']");
         By usernameFieldInProfileLocator = By.xpath("//hgroup[@class='tooltip-container']/h2");
         By accountProfileLinkLocator = By.xpath("//a[@data-purpose='user_manage:edit-account']");
         By emailFieldInProfileLocator = By.xpath("//div[@class='form-control ']/b");
@@ -34,7 +33,7 @@ public class LoginTest extends TestBase {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(usernameFieldInProfileLocator));
         WebElement usernameFieldInProfile = driver.findElement(usernameFieldInProfileLocator);
-        Assert.assertEquals(usernameFieldInProfile.getText(), UserConfig.userNameForLogin);
+        Assert.assertEquals(usernameFieldInProfile.getText(), utils.getUSER_NAME_FOR_LOGIN());
 
         wait.until(ExpectedConditions.elementToBeClickable(accountProfileLinkLocator));
         WebElement accountProfileLink = driver.findElement(accountProfileLinkLocator);
@@ -42,7 +41,7 @@ public class LoginTest extends TestBase {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldInProfileLocator));
         WebElement emailFieldInProfile = driver.findElement(emailFieldInProfileLocator);
-        Assert.assertEquals(emailFieldInProfile.getText(), UserConfig.userEmailForLogin);
+        Assert.assertEquals(emailFieldInProfile.getText(), utils.getUSER_EMAIL_FOR_LOGIN());
     }
 
 }
