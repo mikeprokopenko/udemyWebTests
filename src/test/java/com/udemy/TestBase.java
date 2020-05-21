@@ -1,11 +1,12 @@
 package com.udemy;
 
-import Config.Utils;
+import config.Utils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -27,10 +28,12 @@ public class TestBase {
                 .path("/")
                 .build();
 
-        Utils utils = new Utils();
 
     WebDriver driver;
     WebDriverWait wait;
+
+    Utils utils = new Utils();
+    Actions builder = new Actions(driver);
 
     @BeforeTest(description = "Open the browser")
     public void beforeMethod() {
