@@ -28,30 +28,33 @@ public class SignUpPopup {
         return signUpPopupHeader.getText();
     }
 
-    public void enterNameIntoField(String name) {
+    public SignUpPopup enterNameIntoField(String name) {
         wait.until(ExpectedConditions.elementToBeClickable(fullNameFieldLocator));
         WebElement fullNameField = driver.findElement(fullNameFieldLocator);
         fullNameField.clear();
         fullNameField.sendKeys(name);
+        return this;
     }
 
-    public void enterEmailIntoField(String email) {
+    public SignUpPopup enterEmailIntoField(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(emailFieldLocator));
         WebElement emailField = driver.findElement(emailFieldLocator);
         emailField.clear();
         emailField.sendKeys(email);
+        return this;
     }
 
-    public void enterPWIntoField(String password) {
+    public SignUpPopup enterPWIntoField(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(passwordFieldLocator));
         WebElement passwordField = driver.findElement(passwordFieldLocator);
         passwordField.clear();
         passwordField.sendKeys(password);
+        return this;
     }
 
     public void clickSignUpBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(signUpBtnLocator));
         WebElement signUpBtn = driver.findElement(signUpBtnLocator);
-        signUpBtn.clear();
+        signUpBtn.click();
     }
 }

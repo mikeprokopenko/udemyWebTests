@@ -54,11 +54,12 @@ public class ProfilePage {
         return closeAccountPopupTitle.getText();
     }
 
-    public void enterPWInCloseAccountPopup(String password) {
+    public ProfilePage enterPWInCloseAccountPopup(String password) {
         wait.until(ExpectedConditions.elementToBeClickable(passwordFieldInCloseAccountPopupLocator));
         WebElement passwordFieldInCloseAccountPopup = driver.findElement(passwordFieldInCloseAccountPopupLocator);
         passwordFieldInCloseAccountPopup.clear();
         passwordFieldInCloseAccountPopup.sendKeys(password);
+        return this;
     }
 
     public void clickCloseAccountBtnAfterEnteringPW() {

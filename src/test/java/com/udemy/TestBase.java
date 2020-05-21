@@ -1,12 +1,12 @@
 package com.udemy;
 
+import com.udemy.pages.*;
 import config.Utils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -31,23 +31,31 @@ public class TestBase {
 
     WebDriver driver;
     WebDriverWait wait;
-
-    Utils utils = new Utils();
-    Actions builder = new Actions(driver);
+    Utils utils;
+    HeaderMenu headerMenu;
+    HomePage homePage;
+    LoggedInHeaderMenu loggedInHeaderMenu;
+    ProfilePage profilePage;
+    SignUpPopup signUpPopup;
 
     @BeforeTest(description = "Open the browser")
     public void beforeMethod() {
 
         ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", false);
+/*        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);*/
         options.addArguments("--lang=en");
 
         driver = new ChromeDriver(chromeService, options);
-
         driver.manage().window().maximize();
-
+        utils = new Utils();
         wait = new WebDriverWait(driver, 15);
+        headerMenu = new HeaderMenu(driver, wait);
+        homePage = new HomePage(driver, wait, cookie);
+        loggedInHeaderMenu = new LoggedInHeaderMenu(driver, wait);
+        profilePage = new ProfilePage(driver, wait);
+        signUpPopup = new SignUpPopup(driver, wait);
+
     }
 
     @AfterTest (description = "Closing the browser")

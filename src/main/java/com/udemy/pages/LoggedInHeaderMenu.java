@@ -12,20 +12,19 @@ public class LoggedInHeaderMenu {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
-    private final Actions builder;
 
-    public LoggedInHeaderMenu(WebDriver driver, WebDriverWait wait, Actions builder) {
+    public LoggedInHeaderMenu(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
-        this.builder = builder;
     }
 
-    By userProfileDropdownLocator = By.xpath("//div[@class='dropdown--open-on-hover dropdown--user dropdown--open-on-hover dropdown']");
+    By userProfileDropdownLocator = By.xpath("//div[@data-purpose='user-avatar']");
     By profileLinkInDropdownLocator = By.xpath("//a[@data-purpose='edit-profile']");
 
     public void openProfilePage() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(userProfileDropdownLocator));
         WebElement userProfileDropdown = driver.findElement(userProfileDropdownLocator);
+        Actions builder = new Actions(driver);
         Action moveMouseOnUserDropdown = builder
                 .moveToElement(userProfileDropdown)
                 .build();
