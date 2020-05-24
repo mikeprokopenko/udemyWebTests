@@ -23,6 +23,8 @@ public class ProfilePage {
     By closeAccountPopupTitleLocator = By.xpath("//div[@class='modal-header']/h4");
     By passwordFieldInCloseAccountPopupLocator = By.id("id_password");
     By closeAccountBtnAfterEnteringPWLocator = By.id("submit-id-submit");
+    By userEditAccountLinkLocator = By.xpath("//a[@data-purpose='user_manage:edit-account']");
+    By emailFieldInEditAccountScreenLocator = By.xpath("//div[@class='form-control ']/b");
 
     public String getUsernameInProfile() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(usernameValueInProfileLocator));
@@ -66,5 +68,17 @@ public class ProfilePage {
         wait.until(ExpectedConditions.elementToBeClickable(closeAccountBtnAfterEnteringPWLocator));
         WebElement closeAccountBtnAfterEnteringPW = driver.findElement(closeAccountBtnAfterEnteringPWLocator);
         closeAccountBtnAfterEnteringPW.click();
+    }
+
+    public void openEditAccountScreen() {
+        wait.until(ExpectedConditions.elementToBeClickable(userEditAccountLinkLocator));
+        WebElement userEditAccountLink = driver.findElement(userEditAccountLinkLocator);
+        userEditAccountLink.click();
+    }
+
+    public String getEmailValueFromEditAccountScreen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldInEditAccountScreenLocator));
+        WebElement emailFieldInEditProfileScreen = driver.findElement(emailFieldInEditAccountScreenLocator);
+        return emailFieldInEditProfileScreen.getText();
     }
 }

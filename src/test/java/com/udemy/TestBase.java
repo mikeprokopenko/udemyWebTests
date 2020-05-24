@@ -23,7 +23,7 @@ public class TestBase {
             .usingAnyFreePort()
             .build();
 
-        Cookie cookie = new Cookie.Builder("dj_session_id", "wxb3l0upnarwlorj4iqyk4c6nvg2mk8u")
+        Cookie cookie = new Cookie.Builder("dj_session_id", "s5h262s3qeyghe1xov2bbaxnjkpf3w5u")
                 .domain("www.udemy.com")
                 .path("/")
                 .build();
@@ -37,6 +37,7 @@ public class TestBase {
     LoggedInHeaderMenu loggedInHeaderMenu;
     ProfilePage profilePage;
     SignUpPopup signUpPopup;
+    SearchResultsPage searchResultsPage;
 
     @BeforeTest(description = "Open the browser")
     public void beforeMethod() {
@@ -56,6 +57,7 @@ public class TestBase {
         loggedInHeaderMenu = new LoggedInHeaderMenu(driver, wait);
         profilePage = new ProfilePage(driver, wait);
         signUpPopup = new SignUpPopup(driver, wait);
+        searchResultsPage = new SearchResultsPage(driver, wait);
 
     }
 

@@ -1,6 +1,7 @@
 package com.udemy.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -18,15 +19,30 @@ public class LoggedInHeaderMenu {
         this.wait = wait;
     }
 
-    By userProfileDropdownLocator = By.xpath("//div[@class='dropdown--open-on-hover dropdown--user dropdown--open-on-hover dropdown']");
+    By userProfileBtnLocator = By.xpath("//a[@id ='header.profile']");
 
-    public void openProfilePage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(userProfileDropdownLocator));
-        WebElement userProfileDropdown = driver.findElement(userProfileDropdownLocator);
+    public void openProfilePageViaStandardClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
+        WebElement userProfileDropdown = driver.findElement(userProfileBtnLocator);
+        userProfileDropdown.click();
+    }
+
+    public void openProfilePageViaActionBuilder() {
+        wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
+        WebElement userProfileDropdown = driver.findElement(userProfileBtnLocator);
         Actions builder = new Actions(driver);
-        Action clickProfileIcon = builder
+        Action moveToDropdown = builder
+                .moveToElement(userProfileDropdown)
                 .click(userProfileDropdown)
                 .build();
-        clickProfileIcon.perform();
+        moveToDropdown.perform();
+
+    }
+
+    public void openProfilePageViaJSE() {
+        wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
+        WebElement userProfileDropdown = driver.findElement(userProfileBtnLocator);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].click();", userProfileDropdown);
     }
 }

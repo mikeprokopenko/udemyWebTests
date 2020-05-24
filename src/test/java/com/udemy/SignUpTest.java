@@ -22,7 +22,9 @@ public class SignUpTest extends TestBase {
                 .enterPWIntoField(utils.getUSER_PW_FOR_SIGN_UP())
                 .clickSignUpBtn();
 
-        loggedInHeaderMenu.openProfilePage();
+//        loggedInHeaderMenu.openProfilePageViaStandardClick();
+        loggedInHeaderMenu.openProfilePageViaActionBuilder();
+//        loggedInHeaderMenu.openProfilePageViaJSE();
 
         Assert.assertEquals(profilePage.getUsernameInProfile(), utils.getUSER_NAME_FOR_SIGN_UP());
 
