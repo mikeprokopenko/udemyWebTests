@@ -2,4 +2,3 @@
 .allure
 target/
 com.udemy.iml
-src/main/java/config/
