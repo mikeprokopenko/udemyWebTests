@@ -19,7 +19,7 @@ public class LoggedInHeaderMenu {
         this.wait = wait;
     }
 
-    By userProfileBtnLocator = By.xpath("//a[@id ='header.profile']");
+    By userProfileBtnLocator = By.xpath("//a[@id ='header.profile' or @aria-label='My profile']");
 
     public void openProfilePageViaStandardClick() {
         wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
@@ -39,10 +39,10 @@ public class LoggedInHeaderMenu {
 
     }
 
-    public void openProfilePageViaJSE() {
+/*    public void openProfilePageViaJSE() {
         wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
         WebElement userProfileDropdown = driver.findElement(userProfileBtnLocator);
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("arguments[0].click();", userProfileDropdown);
-    }
+    }*/
 }

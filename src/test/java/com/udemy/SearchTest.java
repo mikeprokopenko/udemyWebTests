@@ -3,6 +3,8 @@ package com.udemy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static config.BaseConstants.SEARCH_KEYWORD;
+
 public class SearchTest extends TestBase {
 
     @Test (description = "Search on the HomePage")
@@ -10,17 +12,17 @@ public class SearchTest extends TestBase {
 
         homePage.openHomePage();
 
-        homePage.enterKeywordIntoSearchField(utils.getSearchKeyword());
+        homePage.enterKeywordIntoSearchField(SEARCH_KEYWORD);
 
         homePage.clickSearchBtn();
 
-        Assert.assertTrue(searchResultsPage.getSearchResultsTitleText().contains(utils.getSearchKeyword().toLowerCase()));
+        Assert.assertTrue(searchResultsPage.getSearchResultsTitleText().contains(SEARCH_KEYWORD.toLowerCase()));
 
-        Assert.assertFalse(!driver.getCurrentUrl().contains("ref=home"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("q=" + SEARCH_KEYWORD));
 
-        Assert.assertTrue(searchResultsPage.getTitleOfFirstSearchResult().toLowerCase().contains(utils.getSearchKeyword().toLowerCase()));
+        Assert.assertTrue(searchResultsPage.getTitleOfFirstSearchResult().toLowerCase().contains(SEARCH_KEYWORD.toLowerCase()));
 
-        Assert.assertEquals(headerMenu.getSearchFieldEnteredValue(), utils.getSearchKeyword());
+        Assert.assertEquals(headerMenu.getSearchFieldEnteredValue(), SEARCH_KEYWORD);
 
     }
 }

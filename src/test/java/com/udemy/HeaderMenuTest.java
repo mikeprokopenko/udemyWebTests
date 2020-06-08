@@ -3,6 +3,9 @@ package com.udemy;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+import static config.BaseConstants.MAIN_CATEGORIES_LIST;
+
 public class HeaderMenuTest extends TestBase {
 
     @Test (description = "Testing of categories in the \"Categories\" menu")
@@ -12,6 +15,6 @@ public class HeaderMenuTest extends TestBase {
 
         headerMenu.moveToCategoriesDropdown();
 
-        Assert.assertEquals(headerMenu.createArrayListOfCategories(), utils.getARRAY_LIST_HEADER_CATEGORIES());
+        Assert.assertEquals(headerMenu.getMainCategoriesTitles(), MAIN_CATEGORIES_LIST);
     }
 }

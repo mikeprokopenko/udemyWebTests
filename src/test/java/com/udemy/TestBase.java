@@ -1,7 +1,6 @@
 package com.udemy;
 
 import com.udemy.pages.*;
-import config.Utils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +22,7 @@ public class TestBase {
             .usingAnyFreePort()
             .build();
 
-        Cookie cookie = new Cookie.Builder("dj_session_id", "s5h262s3qeyghe1xov2bbaxnjkpf3w5u")
+        Cookie cookie = new Cookie.Builder("dj_session_id", "4pdyj0nakera556o3mzqc5ktl8yyeguq")
                 .domain("www.udemy.com")
                 .path("/")
                 .build();
@@ -31,7 +30,6 @@ public class TestBase {
 
     WebDriver driver;
     WebDriverWait wait;
-    Utils utils;
     HeaderMenu headerMenu;
     HomePage homePage;
     LoggedInHeaderMenu loggedInHeaderMenu;
@@ -50,10 +48,9 @@ public class TestBase {
 
         driver = new ChromeDriver(chromeService, options);
         driver.manage().window().maximize();
-        utils = new Utils();
         wait = new WebDriverWait(driver, 15);
         headerMenu = new HeaderMenu(driver, wait);
-        homePage = new HomePage(driver, wait, cookie);
+        homePage = new HomePage(driver, wait);
         loggedInHeaderMenu = new LoggedInHeaderMenu(driver, wait);
         profilePage = new ProfilePage(driver, wait);
         signUpPopup = new SignUpPopup(driver, wait);

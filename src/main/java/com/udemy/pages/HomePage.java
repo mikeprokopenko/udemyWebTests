@@ -11,22 +11,20 @@ public class HomePage {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
-    private final Cookie cookie;
 
-    public HomePage(WebDriver driver, WebDriverWait wait, Cookie cookie) {
+    public HomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
-        this.cookie = cookie;
     }
 
-    By searchFieldLocator = By.id("search-field-home");
-    By searchBtnLocator = By.xpath("//button[@data-purpose='home-search-button']");
+    By searchFieldLocator = By.xpath("//input[@data-purpose='home-quick-search-box' or @class='udlite-text-input udlite-text-input-large udlite-text-md udlite-search-form-autocomplete-input']");
+    By searchBtnLocator = By.xpath("//button[@data-purpose='home-search-button' or @class='udlite-btn udlite-btn-large udlite-btn-ghost udlite-heading-md udlite-btn-icon udlite-btn-icon-large']");
 
     public void openHomePage() {
         driver.get("https://www.udemy.com/");
     }
 
-    public void setCookies() {
+    public void setCookies(Cookie cookie) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchFieldLocator));
         driver.manage().addCookie(cookie);
         driver.navigate().refresh();
