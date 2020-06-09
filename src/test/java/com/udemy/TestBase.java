@@ -1,7 +1,6 @@
 package com.udemy;
 
 import com.udemy.pages.*;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -21,11 +20,6 @@ public class TestBase {
             .usingDriverExecutable(chromeDriver)
             .usingAnyFreePort()
             .build();
-
-        Cookie cookie = new Cookie.Builder("dj_session_id", "4pdyj0nakera556o3mzqc5ktl8yyeguq")
-                .domain("www.udemy.com")
-                .path("/")
-                .build();
 
 
     WebDriver driver;

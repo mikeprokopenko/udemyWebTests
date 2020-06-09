@@ -16,7 +16,7 @@ public class SignUpPopup {
         this.wait = wait;
     }
 
-    By signUpPopupHeaderLocator = By.xpath("//div[@class=' loginbox-v4__header loginbox-v4__header--signup']");
+    By signUpPopupHeaderLocator = By.xpath("//div[@class='loginbox-v4__header loginbox-v4__header--signup' or @class=' loginbox-v4__header loginbox-v4__header--signup']");
     By fullNameFieldLocator = By.id("id_fullname");
     By emailFieldLocator = By.id("email--1");
     By passwordFieldLocator = By.id("password");

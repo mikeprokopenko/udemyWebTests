@@ -12,7 +12,7 @@ public class SignUpTest extends TestBase {
 
         homePage.openHomePage();
 
-        Assert.assertEquals(headerMenu.getSignUpPopupBtnTitle(), "Sign Up");
+        Assert.assertTrue(headerMenu.getSignUpPopupBtnTitle().contains("Sign Up") || headerMenu.getSignUpPopupBtnTitle().contains("Sign up"));
 
         headerMenu.openSignUpPopup();
 
@@ -42,7 +42,7 @@ public class SignUpTest extends TestBase {
                 .enterPWInCloseAccountPopup(newUser.getPassword())
                 .clickCloseAccountBtnAfterEnteringPW();
 
-        Assert.assertEquals(headerMenu.getSignUpPopupBtnTitle(), "Sign Up");
+        Assert.assertTrue(headerMenu.getSignUpPopupBtnTitle().contains("Sign Up") || headerMenu.getSignUpPopupBtnTitle().contains("Sign up"));
 
     }
 }

@@ -1,18 +1,15 @@
 package models;
 
+import org.openqa.selenium.Cookie;
+
 public class User {
 
     private String email;
     private  String name;
     private String password;
+    private Cookie cookie;
 
     public User(){}
-
-    public User(String email, String name, String password) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;
@@ -24,6 +21,15 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Cookie getCookie() {
+        return cookie;
+    }
+
+    public User setCookie(Cookie cookie) {
+        this.cookie = cookie;
+        return this;
     }
 
     public User setEmail(String email) {

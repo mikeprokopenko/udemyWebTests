@@ -12,9 +12,9 @@ public class LoginTest extends TestBase {
 
         homePage.openHomePage();
 
-        Assert.assertEquals(headerMenu.getLoginBtnText(), "Log In");
+        Assert.assertTrue(headerMenu.getLoginBtnText().contains("Log In") || headerMenu.getLoginBtnText().contains("Log in"));
 
-        homePage.setCookies(cookie);
+        homePage.setCookies();
 
         loggedInHeaderMenu.openProfilePageViaStandardClick();
 
