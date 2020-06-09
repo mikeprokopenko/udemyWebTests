@@ -47,8 +47,8 @@ public class HeaderMenu {
     private WebElement categoriesDropdown;
 
     @FindAll({
-            @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu__list dropdown-menu__list--level-one')]"),
-            @FindBy(xpath = "//ul[contains(@class, 'udlite-block-list list-menu--section--BZ3j9')]")
+            @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu__list dropdown-menu__list--level-one')]/li"),
+            @FindBy(xpath = "//ul[contains(@class, 'udlite-block-list list-menu--section--BZ3j9')]/li")
     })
     private List<WebElement> mainCategoriesElements;
 
