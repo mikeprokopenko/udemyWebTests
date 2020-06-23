@@ -52,11 +52,28 @@ public class HeaderMenu {
     })
     private List<WebElement> mainCategoriesElements;
 
+    @FindBy(xpath = "//*[contains(@data-purpose,'ufb-link') or contains(@href, 'business.udemy.com/request')]")
+    private WebElement udemyForBusinessBtn;
+
+    @FindBy(xpath = "//*[contains(@style, 'font-weight: 400')]")
+    private WebElement udemyForBusinessTitleText;
+
+    @FindBy(xpath = "//*[contains(@id,'header.instructor') or contains(@href, '/teaching/')]")
+    private WebElement teachOnUdemyBtn;
+
+    @FindBy(xpath = "//h2[contains(@class, 'text-shadow')]")
+    private WebElement teachOnUdemyTitle;
+
     By signUpPopupBtnLocator = By.xpath("//div/*[@class='udlite-btn udlite-btn-small udlite-btn-primary udlite-heading-sm' or @data-purpose='header-signup']");
     By loginHeaderBtnLocator = By.xpath("//div/*[@class='udlite-btn udlite-btn-small udlite-btn-secondary udlite-heading-sm' or @data-purpose='header-login']");
     By searchFieldLocator = By.xpath("//input[contains(@id, 'search-form-autocomplete')]");
     By categoriesBtnLocator = By.xpath("//div/*[@data-purpose='browse-courses-link' or @class='header--browse-nav--82GLV popover--popover--t3rNO popover--popover-hover--14ngr']");
     By categoriesDropdownLocator = By.xpath("//div//*[@class='js-browse-nav-level-one browse-nav--nav--1WzbY' or @class='dropdown-menu__list dropdown-menu__list--level-one']");
+    By udemyForBusinessBtnLocator = By.xpath("//*[contains(@data-purpose,'ufb-link') or contains(@href, 'business.udemy.com/request')]");
+    By udemyForBusinessTitleTextLocator = By.xpath("//*[contains(@style, 'font-weight: 400')]");
+    By teachOnUdemyBtnLocator = By.xpath("//*[contains(@id,'header.instructor') or contains(@href, '/teaching/')]");
+    By teachOnUdemyTitleLocator = By.xpath("//h2[contains(@class, 'text-shadow')]");
+
 
     public String getSignUpPopupBtnTitle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(signUpPopupBtnLocator));
@@ -97,4 +114,23 @@ public class HeaderMenu {
         return mainCategoriesTitles;
     }
 
+    public void clickUdemyForBusinessBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(udemyForBusinessBtnLocator));
+        udemyForBusinessBtn.click();
+    }
+
+    public String getUdemyForBusinessTitleText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(udemyForBusinessTitleTextLocator));
+        return udemyForBusinessTitleText.getText();
+    }
+
+    public void clickTeachOnUdemyBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(teachOnUdemyBtnLocator));
+        teachOnUdemyBtn.click();
+    }
+
+    public String getTeachOnUdemyTitleText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(teachOnUdemyTitleLocator));
+        return teachOnUdemyTitle.getText();
+    }
 }

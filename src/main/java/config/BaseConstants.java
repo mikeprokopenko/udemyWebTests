@@ -23,4 +23,8 @@ public interface BaseConstants {
     );
 
     String SEARCH_KEYWORD = "Angular";
+
+    String UDEMY_FOR_BUSINESS_TITLE = "See why leading organizations choose Udemy for Business as their destination for employee learning";
+
+    String TEACH_ON_UDEMY_TITLE = "Create an online video course and earn money by teaching people around the world.";
 }

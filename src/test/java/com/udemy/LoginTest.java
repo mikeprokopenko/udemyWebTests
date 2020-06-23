@@ -14,9 +14,9 @@ public class LoginTest extends TestBase {
 
         Assert.assertTrue(headerMenu.getLoginBtnText().contains("Log In") || headerMenu.getLoginBtnText().contains("Log in"));
 
-        homePage.setCookies();
+        homePage.setCookies(registeredUser.getCookie());
 
-        loggedInHeaderMenu.openProfilePageViaStandardClick();
+        loggedInHeaderMenu.openProfilePageViaActionBuilder();
 
         Assert.assertEquals(profilePage.getUsernameInProfile(), registeredUser.getName());
 

@@ -1,14 +1,13 @@
 package com.udemy.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static testData.UserData.registeredUser;
 
 public class HomePage {
 
@@ -34,9 +33,9 @@ public class HomePage {
         driver.get("https://www.udemy.com/");
     }
 
-    public void setCookies() {
+    public void setCookies(Cookie cookie) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchFieldLocator));
-        driver.manage().addCookie(registeredUser.getCookie());
+        driver.manage().addCookie(cookie);
         driver.navigate().refresh();
     }
 

@@ -1,7 +1,6 @@
 package com.udemy.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -31,24 +30,14 @@ public class LoggedInHeaderMenu {
 
     By userProfileBtnLocator = By.xpath("//a[@id ='header.profile' or @aria-label='My profile']");
 
-    public void openProfilePageViaStandardClick() {
-        wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
-        userProfileDropdown.click();
-    }
-
     public void openProfilePageViaActionBuilder() {
         wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
         Actions builder = new Actions(driver);
         Action moveToDropdown = builder
                 .moveToElement(userProfileDropdown)
+                .pause(1000)
                 .click(userProfileDropdown)
                 .build();
         moveToDropdown.perform();
     }
-
-/*    public void openProfilePageViaJSE() {
-        wait.until(ExpectedConditions.elementToBeClickable(userProfileBtnLocator));
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("arguments[0].click();", userProfileDropdown);
-    }*/
 }

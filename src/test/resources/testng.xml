@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="UdemyWeb">
-    <test name="Sign Up tests">
+<!--    <test name="Sign Up tests">
         <classes>
             <class name="com.udemy.SignUpTest">
                 <methods>
@@ -32,7 +32,16 @@
         <classes>
             <class name="com.udemy.HeaderMenuTest">
                 <methods>
-                    <include name="getCategoriesInMenu"/>
+                    <include name="checkCategoriesInMenu"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+    <test name="Business and Teach links test">
+        <classes>
+            <class name="com.udemy.BusinessAndTeachLinksTest">
+                <methods>
+                    <include name="checkBusinessAndTeachLink"/>
                 </methods>
             </class>
         </classes>
