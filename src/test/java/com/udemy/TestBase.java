@@ -10,6 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.Collections;
 
 public class TestBase {
@@ -42,7 +43,7 @@ public class TestBase {
 
         driver = new ChromeDriver(chromeService, options);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         headerMenu = new HeaderMenu(driver, wait);
         homePage = new HomePage(driver, wait);
         loggedInHeaderMenu = new LoggedInHeaderMenu(driver, wait);
